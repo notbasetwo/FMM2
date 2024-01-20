@@ -22,6 +22,7 @@ using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using SharpSvn;
 using System.Windows.Media.Effects;
+using static Octokit.GitHubClient;
 
 namespace FMM2
 {
@@ -69,6 +70,9 @@ namespace FMM2
             }));
 
             int i = 0;
+
+            // Create Octokit client to use
+            Octokit.GitHubClient octo = new Octokit.GitHubClient(new Octokit.ProductHeaderValue("FMMv2"));
 
             foreach (Mod checkedMod in checkedMods)
             {
@@ -120,7 +124,7 @@ namespace FMM2
 
             Dispatcher.Invoke(new Action(() =>
             {
-                MessageBox.Show(Application.Current.MainWindow, modsdownloaded, this.Title, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(System.Windows.Application.Current.MainWindow, modsdownloaded, this.Title, MessageBoxButton.OK, MessageBoxImage.Information);
                 closeLogButton.Visibility = Visibility.Visible;
 
                 foreach (Mod listedMod in downloadableModsList.Items)
