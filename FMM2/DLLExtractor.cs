@@ -22,7 +22,7 @@ namespace FMM2
             {
                 if (resFilestream == null)
                 {
-                    MessageBox.Show(string.Join(",",assembly.GetManifestResourceNames()));
+                    MessageBox.Show(string.Join(",", assembly.GetManifestResourceNames()));
                     return null;
                 }
 
@@ -52,11 +52,16 @@ namespace FMM2
             {
                 File.Delete(Path.Combine("FMM", "lib", "INIFileParser.dll"));
             }
+            if (File.Exists(Path.Combine("FMM", "lib", "Octokit.dll"))) {
+                File.Delete(Path.Combine("FMM", "lib", "Octokit.dll"));
+            }
+
             Directory.CreateDirectory(Path.Combine("FMM", "lib"));
             File.WriteAllBytes(Path.Combine("FMM", "lib", "SharpSvn.dll"), ExtractResource(Assembly.GetExecutingAssembly(), "FMM2.SharpSvn.dll"));
             File.WriteAllBytes(Path.Combine("FMM", "lib", "SharpSvn.UI.dll"), ExtractResource(Assembly.GetExecutingAssembly(), "FMM2.SharpSvn.UI.dll"));
             File.WriteAllBytes(Path.Combine("FMM", "lib", "Newtonsoft.Json.dll"), ExtractResource(Assembly.GetExecutingAssembly(), "FMM2.Newtonsoft.Json.dll"));
             File.WriteAllBytes(Path.Combine("FMM", "lib", "INIFileParser.dll"), ExtractResource(Assembly.GetExecutingAssembly(), "FMM2.INIFileParser.dll"));
+            File.WriteAllBytes(Path.Combine("FMM", "lib", "Octokit.dll"), ExtractResource(Assembly.GetExecutingAssembly(), "FMM2.Octokit.dll"));
         }
     }
 }
